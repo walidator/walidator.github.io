@@ -15,6 +15,7 @@
           <div class="crypto-selector-container">
             <h6>Crypto</h6>
             <app-crypto-dropdown
+              tabindex="1"
               [cryptos]="cryptos"
               (cryptoSelectedEvent)="onCryptoSelected($event)"
             ></app-crypto-dropdown>
@@ -23,6 +24,7 @@
           <div class="address-input-container">
             <h6>Address</h6>
             <input
+              tabindex="2"
               (input)="onInput($event)"
               id="crypto-address"
               type="crypto-address"
@@ -43,7 +45,7 @@
           </div>
         </div>
         <!-- Validate Button -->
-        <div
+        <div tabindex="3"
           #buttonSubmit
           [attr.disabled]="isValidateBtnEnabled ? null : 'disabled'"
           class="button button-primary-gradient mt-4 mb-4"

@@ -1,20 +1,21 @@
-@use "@fontsource/spinnaker" as *;
+@use "@fontsource/spinnaker";
 @use "../../sass/variables.scss" as *;
 @use "../../sass/mixin.scss" as *;
 @use "../../sass/colors.scss" as *;
 
 * {
   font-family: "Spinnaker", sans-serif;
-  color: $white;
 }
 
 h1 {
   font-weight: bold;
   font-size: clamp(2rem, -2.3333rem + 11.1111vw, 3.5rem);
+  color: $white;
 }
 
 h2 {
   font-size: clamp(1.25rem, -3.3333rem + 11.1111vw, 1.75rem);
+  color: $white;
 }
 
 .main-content {
@@ -176,10 +177,15 @@ div[disabled] {
 }
 
 .is-invalid {
-  border-color: $error-gradient;
+  border-color: hsla(18, 100%, 49%, 1);
+  border-width: 3px;
+  &:hover, &:active, &:focus,  &:enabled:focus {
+    border-color: $error;
+    border-width: 3px;
+  }
 }
 
 .is-visible {
   visibility: visible !important;
-  color: $error-gradient;
+  color: $error;
 }
