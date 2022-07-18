@@ -30,7 +30,6 @@
               type="crypto-address"
               aria-describedby="crypto-address"
               class="form-control"
-              style="height: 3rem; border-radius: 30px"
               pInputText
               formControlName="address"
               [ngClass]="{ 'is-invalid': f.address.errors && f.address.touched }"
@@ -39,7 +38,7 @@
               [ngClass]="{ 'is-visible': f.address.errors && f.address.touched }"
               style="height: 2rem; visibility: hidden"
             >
-              <span>Address is required</span>
+              <span>Address of at least 10 characters is required</span>
             </div>
             <!-- change style iff the field has been focused and the address is empty                [ngClass]="{ 'is-invalid': f.address.errors && f.address.touched }"-->
           </div>

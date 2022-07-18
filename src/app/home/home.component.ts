@@ -2,9 +2,10 @@
 import multiCoinValidator from 'multicoin-address-validator';
 // @ts-ignore
 import swyftxValidator from '@swyftx/api-crypto-address-validator/dist/wallet-address-validator.min.js';
+import { tap } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { Crypto } from './crypto-dropdown/crypto-dropdown.component';
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, Form, FormBuilder, FormControlStatus, FormGroup, Validators } from '@angular/forms';
 import { ViewChild, ElementRef } from '@angular/core';
 import { AnimationService } from './services/animation-service';
 import { CustomValidatorService } from './services/custom-validator.service';
@@ -28,6 +29,7 @@ export class HomeComponent implements OnInit {
   private cryptoSource = '../../assets/cryptos.json';
   private validators = new Array<AddressValidator>();
   private exceptionList = ['BTTOLD'];
+  private minLengthAddress = 10;
 
   submitted = false;
   form!: FormGroup;
@@ -51,6 +53,7 @@ export class HomeComponent implements OnInit {
   ) {
     this.validators.push(multiCoinValidator);
     this.validators.push(customValidator);
+    
     // Swiftx validato doesn't expose the findCurrency API
     this.validators.push({
       findCurrency: () => true,
@@ -61,25 +64,18 @@ export class HomeComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     this.cryptos = await this.loadCryptos(this.cryptoSource);
     this.form = this.formBuilder.group({
-      address: ['', { validators: [Validators.required], updateOn: 'blur' }],
+      address: ['', { validators: [Validators.required, Validators.minLength(this.minLengthAddress)], updateOn: 'change' }],
     });
 
-    // @ts-ignore
-    this.form.get('address').valueChanges.subscribe(() => this.validateForm());
+    this.form.statusChanges.subscribe((value: FormControlStatus) => this.validateForm(value))
   }
 
   get f(): { [key: string]: AbstractControl } {
     return this.form.controls;
   }
 
-  validateForm(): void {
-    if (
-      this.cryptoAddressSelected !== '' &&
-      this.cryptoAddressSelected.length > 10 &&
-      this.cryptoSelected.name !== ''
-    ) {
-      this.isValidateBtnEnabled = true;
-    }
+  validateForm(value: FormControlStatus): void {
+    this.isValidateBtnEnabled = ![this.cryptoAddressSelected, this.cryptoSelected.name].includes('') && value === 'VALID';
   }
 
   /**
@@ -110,7 +106,7 @@ export class HomeComponent implements OnInit {
    */
   onCryptoSelected(event: any): void {
     this.cryptoSelected = event;
-    this.validateForm();
+    this.validateForm(this.form.status);
   }
 
   /**
@@ -119,7 +115,7 @@ export class HomeComponent implements OnInit {
    */
   onInput(event: any): void {
     this.cryptoAddressSelected = event.target.value;
-    this.validateForm();
+    this.validateForm(this.form.status);
   }
 
   /**

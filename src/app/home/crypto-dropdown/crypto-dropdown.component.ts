@@ -31,12 +31,11 @@ export class CryptoDropdownComponent {
 
   constructor(private formBuilder: FormBuilder) {
     this.form = this.formBuilder.group({
-      cryptoDropdown: ['', { validators: [Validators.required], updateOn: 'blur' }],
+      cryptoDropdown: ['', { validators: [Validators.required], updateOn: 'change' }],
     });
   }
 
   onCryptoSelectedChange(event: any) {
-    console.log('Child Value', event.value);
     this.cryptoSelectedEvent.emit(event.value);
   }
 

@@ -82,6 +82,11 @@ h2 {
     margin-left: 20px;
     font-size: $font-size/5;
   }
+
+  input {
+    height: 3rem; 
+    border-radius: 30px
+  }
 }
 
 div[disabled] {
@@ -106,12 +111,6 @@ div[disabled] {
     @include gradient(0deg, $primary-gradient);
     transition: all $transition-time;
     opacity: 1;
-
-    &:hover,
-    &:focus,
-    &:active {
-      box-shadow: 0 0 $border-radius 2px #55ceff, 0.5rem 0.5rem $border-radius mix(black, #6370e5, 50%);
-    }
   }
 
   .tick {
@@ -169,23 +168,25 @@ div[disabled] {
 .success {
   @extend .feedback;
   @include gradient(to left, $success-gradient);
+  @include glow($border-radius, $success-gradient);
 }
 
 .error {
   @extend .feedback;
   @include gradient(to left, $error-gradient);
+  @include glow($border-radius, $error-gradient);
 }
 
 .is-invalid {
-  border-color: hsla(18, 100%, 49%, 1);
+  border-color: nth($error-gradient, 2);
   border-width: 3px;
   &:hover, &:active, &:focus,  &:enabled:focus {
-    border-color: $error;
+    border-color: nth($error-gradient, 2);
     border-width: 3px;
   }
 }
 
 .is-visible {
   visibility: visible !important;
-  color: $error;
+  color: nth($error-gradient, 2);
 }

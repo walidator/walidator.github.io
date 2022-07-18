@@ -4,3 +4,12 @@
   background: -o-linear-gradient($direction, $list);
   background: linear-gradient($direction, $list);
 }
+
+@mixin glow($border-radius: 30px, $list) {
+  &:hover,
+  &:focus,
+  &:active {
+    box-shadow: 0 0 $border-radius 2px nth($list, 1), 0.5rem 0.5rem $border-radius mix(black, nth($list, 2), 50%);
+  }
+}
+
