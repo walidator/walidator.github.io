@@ -1,0 +1,185 @@
+@use "@fontsource/spinnaker" as *;
+@use "../../sass/variables.scss" as *;
+@use "../../sass/mixin.scss" as *;
+@use "../../sass/colors.scss" as *;
+
+* {
+  font-family: "Spinnaker", sans-serif;
+  color: $white;
+}
+
+h1 {
+  font-weight: bold;
+  font-size: clamp(2rem, -2.3333rem + 11.1111vw, 3.5rem);
+}
+
+h2 {
+  font-size: clamp(1.25rem, -3.3333rem + 11.1111vw, 1.75rem);
+}
+
+.main-content {
+  width: clamp(300px, 90%, 750px);
+  z-index: 1;
+  height: 50%;
+  position: relative;
+  margin: auto;
+  display: block;
+  top: 0;
+  left: 0;
+}
+
+.background {
+  min-height: 100%;
+  background: linear-gradient(145deg, $background-gradient), #060d20;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  vertical-align: middle;
+}
+
+.crypto-selector-container {
+  min-width: 25%;
+  width: calc((500px - 100%) * 1000);
+  max-width: 100%;
+  margin: 0px;
+  padding: 0px;
+
+  ::ng-deep ::-webkit-scrollbar {
+    width: 0;
+    background: transparent;
+  }
+
+  ::ng-deep ::-webkit-scrollbar-thumb {
+    background: transparent;
+  }
+
+  h6 {
+    text-align: left;
+    height: max-content;
+    color: $light-blue;
+    margin-bottom: 5px;
+    margin-left: 20px;
+    font-size: $font-size/5;
+  }
+}
+
+.address-input-container {
+  display: flex;
+  flex-direction: column;
+  min-width: 70%;
+  width: calc((500px - 100%) * 1000);
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+
+  h6 {
+    text-align: left;
+    height: max-content;
+    color: $light-blue;
+    margin-bottom: 5px;
+    margin-left: 20px;
+    font-size: $font-size/5;
+  }
+}
+
+div[disabled] {
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+.button {
+  height: 4rem;
+  width: 300px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: $font-size/2.25;
+  font-weight: 600;
+  border: none;
+  color: $white;
+  border-radius: $border-radius;
+  cursor: pointer;
+
+  &-primary-gradient {
+    @include gradient(0deg, $primary-gradient);
+    transition: all $transition-time;
+    opacity: 1;
+
+    &:hover,
+    &:focus,
+    &:active {
+      box-shadow: 0 0 $border-radius 2px #55ceff, 0.5rem 0.5rem $border-radius mix(black, #6370e5, 50%);
+    }
+  }
+
+  .tick {
+    font-size: 1em;
+    transition: all $transition-time;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: inherit;
+    align-items: inherit;
+    font-family: sans-serif;
+  }
+
+  &-circle {
+    height: 4rem;
+    width: 4rem;
+    padding: 1rem;
+    border-radius: $border-radius;
+    transition: all $transition-time;
+  }
+}
+
+.blocks-container {
+  z-index: 0;
+  height: 80%;
+  width: 80%;
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  overflow: hidden;
+  transform: translate(-50%, -50%);
+  opacity: 0.2;
+}
+
+.text-appear {
+  transition: all $transition-time;
+  color: $white;
+}
+
+.no-hover {
+  pointer-events: none;
+}
+
+.not-visible {
+  opacity: 0;
+  transition: all $transition-time/2;
+}
+
+.feedback {
+  transition: all $transition-time;
+  height: 4rem;
+  width: 300px;
+}
+
+.success {
+  @extend .feedback;
+  @include gradient(to left, $success-gradient);
+}
+
+.error {
+  @extend .feedback;
+  @include gradient(to left, $error-gradient);
+}
+
+.is-invalid {
+  border-color: $error-gradient;
+}
+
+.is-visible {
+  visibility: visible !important;
+  color: $error-gradient;
+}

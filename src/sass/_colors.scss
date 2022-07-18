@@ -1,0 +1,25 @@
+$success-gradient: #29ffc6, #20e3b2, #0cebeb;
+$background-gradient: #333972, transparent 40%;
+$error-gradient: hsla(324, 91%, 46%, 1) 0%, hsla(18, 100%, 49%, 1) 100%;
+$white: rgba(255, 255, 255, 1);
+$light-blue: #859ec9;
+$primary-gradient: #55ceff, #6370e5;
+$secondary-gradient: #55ceff, #5aec99;
+
+.primary-text-gradient {
+  background: -webkit-linear-gradient(0deg, $primary-gradient);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.secondary-text-gradient {
+  background: -webkit-linear-gradient(0deg, $secondary-gradient);
+  background-clip: text;
+  flex-direction: column;
+  -webkit-background-clip: text;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-text-fill-color: transparent;
+  -ms-flex-direction: column;
+}

@@ -1,0 +1,62 @@
+<main class="background">
+  <app-header></app-header>
+  <div class="flex flex-column text-center absolute-center main-content sm:mt-0 xl:mt-4">
+    <section>
+      <h1 class="h-4rem secondary-text-gradient w-auto">Send crypto with no doubts</h1>
+      <h2 class="h-3rem w-auto">
+        Walidator helps you to <span class="primary-text-gradient">validate</span> more than
+        <span class="secondary-text-gradient">150</span> crypto address
+      </h2>
+    </section>
+    <div class="w-100 mt-4 mb-6">
+      <form *ngIf="form" [formGroup]="form">
+        <div class="flex flex-row flex-wrap" style="gap: 1rem">
+          <!-- Crypto Selection -->
+          <div class="crypto-selector-container">
+            <h6>Crypto</h6>
+            <app-crypto-dropdown
+              [cryptos]="cryptos"
+              (cryptoSelectedEvent)="onCryptoSelected($event)"
+            ></app-crypto-dropdown>
+          </div>
+          <!-- Address Input -->
+          <div class="address-input-container">
+            <h6>Address</h6>
+            <input
+              (input)="onInput($event)"
+              id="crypto-address"
+              type="crypto-address"
+              aria-describedby="crypto-address"
+              class="form-control"
+              style="height: 3rem; border-radius: 30px"
+              pInputText
+              formControlName="address"
+              [ngClass]="{ 'is-invalid': f.address.errors && f.address.touched }"
+            />
+            <div
+              [ngClass]="{ 'is-visible': f.address.errors && f.address.touched }"
+              style="height: 2rem; visibility: hidden"
+            >
+              <span>Address is required</span>
+            </div>
+            <!-- change style iff the field has been focused and the address is empty                [ngClass]="{ 'is-invalid': f.address.errors && f.address.touched }"-->
+          </div>
+        </div>
+        <!-- Validate Button -->
+        <div
+          #buttonSubmit
+          [attr.disabled]="isValidateBtnEnabled ? null : 'disabled'"
+          class="button button-primary-gradient mt-4 mb-4"
+          (click)="onValidateClick()"
+        >
+          <p #buttonText class="tick">Validate</p>
+        </div>
+      </form>
+    </div>
+  </div>
+  <!-- Animation -->
+  <div class="blocks-container">
+    <img src="../../assets/blocks.svg" />
+  </div>
+  <app-footer></app-footer>
+</main>

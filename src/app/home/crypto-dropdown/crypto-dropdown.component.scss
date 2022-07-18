@@ -1,0 +1,68 @@
+$border-radius: 30px;
+
+:host {
+  ::ng-deep .crypto-dropdown-container {
+    box-sizing: border-box;
+    height: 3em;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: $border-radius;
+    padding: 5px;
+
+    .p-inputtext {
+      padding: 0;
+    }
+  }
+
+  ::ng-deep .p-dropdown-panel {
+    border-radius: $border-radius;
+    margin-top: 7.5px;
+    overflow: hidden;
+
+    .p-dropdown-items:not(.p-dropdown-virtualscroll) {
+      padding: 0;
+    }
+
+    .p-dropdown .p-dropdown-trigger {
+      padding: 10px;
+    }
+
+    .p-dropdown-items {
+      .p-dropdown-item {
+        box-sizing: border-box;
+        margin: 0;
+        height: 3em;
+        padding: 0;
+      }
+    }
+
+    .p-dropdown-header {
+      .p-dropdown-filter {
+        margin: 0;
+        border-radius: $border-radius;
+        padding: 5px 10px;
+      }
+    }
+  }
+}
+
+.crypto-dropdown-item {
+  height: 3em;
+  display: flex;
+  width: 100%;
+  line-height: 100%;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+
+  .logo {
+    max-height: 50%;
+    margin-left: 10%;
+  }
+
+  .text {
+    flex-grow: 1;
+  }
+}

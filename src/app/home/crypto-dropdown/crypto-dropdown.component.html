@@ -1,0 +1,40 @@
+<form [formGroup]="form" *ngIf="form">
+  <div position="relative">
+    <p-dropdown
+      (onChange)="onCryptoSelectedChange($event)"
+      [options]="cryptos"
+      [(ngModel)]="selectedCrypto"
+      optionLabel="name"
+      scrollHeight="20vh"
+      [filter]="true"
+      filterBy="symbol"
+      [virtualScroll]="true"
+      [itemSize]="50"
+      styleClass="crypto-dropdown-container"
+      formControlName="cryptoDropdown"
+      placeholder="Select a Crypto"
+    >
+      <ng-template pTemplate="selectedItem">
+        <div class="crypto-dropdown-item" *ngIf="selectedCrypto">
+          <img
+            src="../../../../assets/logos/{{ selectedCrypto.symbol.toLowerCase() }}.png"
+            alt="crypto logo"
+            [class]="'logo'"
+          />
+          <span [class]="'text'">{{ selectedCrypto.symbol | uppercase }}</span>
+        </div>
+      </ng-template>
+      <ng-template let-crypto pTemplate="item">
+        <div class="crypto-dropdown-item">
+          <img
+            src="../../../../assets/logos/{{ crypto.symbol.toLowerCase() }}.png"
+            alt="crypto symbol"
+            loading="lazy"
+            [class]="'logo'"
+          />
+          <span [class]="'text'">{{ crypto.symbol | uppercase }}</span>
+        </div>
+      </ng-template>
+    </p-dropdown>
+  </div>
+</form>
