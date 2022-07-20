@@ -1,14 +1,14 @@
-<main class="background">
+<main style="height: calc(100% - 5rem)">
   <app-header></app-header>
-  <div class="flex flex-column text-center absolute-center main-content sm:mt-0 xl:mt-4">
+  <div class="flex flex-column text-center main-content">
     <section>
-      <h1 class="h-4rem secondary-text-gradient w-auto">Send crypto with no doubts</h1>
-      <h2 class="h-3rem w-auto">
+      <h1 class="secondary-text-gradient">Send crypto with no doubts</h1>
+      <h2>
         Walidator helps you to <span class="primary-text-gradient">validate</span> more than
         <span class="secondary-text-gradient">150</span> crypto address
       </h2>
     </section>
-    <div class="w-100 mt-4 mb-6">
+    <div class="mt-4 mb-6">
       <form *ngIf="form" [formGroup]="form">
         <div class="flex flex-row flex-wrap" style="gap: 1rem">
           <!-- Crypto Selection -->
@@ -59,5 +59,5 @@
   <div class="blocks-container">
     <img src="../../assets/blocks.svg" />
   </div>
-  <app-footer></app-footer>
 </main>
+<app-footer></app-footer>

@@ -1,13 +1,23 @@
-/*
- * Entry point of global application style.
- * Component-specific style should not go here and be included directly as part of the components.
- */
+@use "./sass/colors" as *;
 
-html,
+html {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  height: 100%;
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   padding: 0;
   border: 0;
   box-sizing: border-box;
-  height: 100vh !important;
+  min-height: 100%;
+  background: linear-gradient(145deg, $background-gradient), #060d20 !important;
+  background-attachment: fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }

@@ -29,16 +29,6 @@ h2 {
   left: 0;
 }
 
-.background {
-  min-height: 100%;
-  background: linear-gradient(145deg, $background-gradient), #060d20;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  vertical-align: middle;
-}
-
 .crypto-selector-container {
   min-width: 25%;
   width: calc((500px - 100%) * 1000);
